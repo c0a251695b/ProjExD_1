@@ -26,18 +26,19 @@ def main():
         screen.blit(bg_img, [-x + 3200, 0])  # 練習9
 
         key_lst = pg.key.get_pressed()
-
-        kk_rct.move_ip((-1, 0))
+        vx = -1  # 何も押さない場合は背景と同じ速度で左へ流れる
+        vy = 0
 
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip((0, -1))
+            vy -= 1
         if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip((0, +1))
+            vy += 1
         if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-1, 0))
+            vx -= 1
         if key_lst[pg.K_RIGHT]:
+            vx += 2  # 左(-1)と合わせて右(+1)へ進む
 
-            kk_rct.move_ip((+2, 0))
+        kk_rct.move_ip(vx, vy)
 
         screen.blit(kk_img, kk_rct)  # 練習10-5
         pg.display.update()
